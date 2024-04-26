@@ -1,3 +1,4 @@
+import heapq
 
 def calculate_frequencies(input_file):
     with open(input_file,'r') as file:
@@ -11,3 +12,6 @@ def calculate_frequencies(input_file):
     return freq
 
 print(calculate_frequencies('input.txt'))
+
+def build_huffman_tree(frequencies):
+    pass
