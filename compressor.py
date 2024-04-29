@@ -18,6 +18,12 @@ print(calculate_frequencies('input.txt'))
 def build_huffman_tree(frequencies):
     heap = [[freq, [sym, ""]] for sym, freq in frequencies.items()]
     print(heap)
+    heapq.heapify(heap)
+    while len(heap) > 1:
+        lo = heapq.heappop(heap)
+        print(lo)
+        hi = heapq.heappop(heap)
+        print(hi)
 
 
 frequencies = calculate_frequencies('input.txt')
