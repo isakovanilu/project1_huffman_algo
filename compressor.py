@@ -24,7 +24,9 @@ def build_huffman_tree(frequencies):
         print(lo)
         hi = heapq.heappop(heap)
         print(hi)
-
+        for pair in lo[1:]:
+            pair[1] = '0' + pair[1]
+            print(pair)
 
 frequencies = calculate_frequencies('input.txt')
 
