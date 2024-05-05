@@ -25,12 +25,10 @@ def build_huffman_tree(frequencies):
         hi = heapq.heappop(heap)
         for pair in lo[1:]:
             pair[1] = '0' + pair[1]
-            print(pair)
         for pair in hi[1:]:
             pair[1] = '1' + pair[1]
-            print(pair)
-    #     heapq.heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
-    # return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
+        heapq.heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
+    return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 
 frequencies = calculate_frequencies('input.txt')
 
