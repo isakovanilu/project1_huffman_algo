@@ -33,3 +33,12 @@ def build_huffman_tree(frequencies):
 frequencies = calculate_frequencies('input.txt')
 
 print(build_huffman_tree(frequencies))
+
+def compress(text, codes):
+    return ''.join(code for char in text for sym, code in codes if char == sym)
+
+
+def decompress(text, codes):
+    sym = ''
+    decompressed = []
+    
