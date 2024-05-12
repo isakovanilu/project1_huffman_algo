@@ -39,6 +39,7 @@ def compress(text, codes):
 
 
 def decompress(text, codes):
-    sym = ''
-    decompressed = []
+    reverse_codes = {code: sym for sym, code in codes}
+    current_code = ""
+    text = ""
     
