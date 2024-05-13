@@ -13,15 +13,12 @@ def calculate_frequencies(input_file):
             freq[char] = 1
     return freq
 
-print(calculate_frequencies('input.txt'))
 
 def build_huffman_tree(frequencies):
     heap = [[freq, [sym, ""]] for sym, freq in frequencies.items()]
-    print(heap)
     heapq.heapify(heap)
     while len(heap) > 1:
         lo = heapq.heappop(heap)
-        print(lo)
         hi = heapq.heappop(heap)
         for pair in lo[1:]:
             pair[1] = '0' + pair[1]
@@ -30,16 +27,14 @@ def build_huffman_tree(frequencies):
         heapq.heappush(heap, [lo[0] + hi[0]] + lo[1:] + hi[1:])
     return sorted(heapq.heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 
-frequencies = calculate_frequencies('input.txt')
-
-print(build_huffman_tree(frequencies))
-
-def compress(text, codes):
+def compress(input_file, codes):
+    with open(input_file,'r') as file:
+        text = file.read() #.split()
     return ''.join(code for char in text for sym, code in codes if char == sym)
 
 
-def decompress(text, codes):
+def decompress(compressed_text, codes):
     reverse_codes = {code: sym for sym, code in codes}
     current_code = ""
-    text = ""
-    
+    decompressed_text = ""
+    for bit in compressed_text:
