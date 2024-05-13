@@ -38,3 +38,4 @@ def decompress(compressed_text, codes):
     current_code = ""
     decompressed_text = ""
     for bit in compressed_text:
+        current_code += bit
