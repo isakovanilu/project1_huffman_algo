@@ -39,3 +39,23 @@ def decompress(compressed_text, codes):
     decompressed_text = ""
     for bit in compressed_text:
         current_code += bit
+        if current_code in reverse_codes:
+            decompressed_text += reverse_codes[current_code]
+            current_code = ""
+    return decompressed_text
+    
+    
+    
+input_file = 'input.txt'
+# calculate frequencies and build Huffman tree
+frequencies = calculate_frequencies(input_file)
+huffman_tree = build_huffman_tree(frequencies)
+
+# generate Huffman codes
+codes = [(sym, code) for sym, code in huffman_tree]
+
+# compress and decompress
+compressed_text = compress(input_file, codes)
+decompressed_text = decompress(compressed_text, codes)
+
+print('decompressed_text', decompressed_text)
